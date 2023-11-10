@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: 5b68b6183a4e1444d9b8814066add816, type: 2}
-  cam: {fileID: 1959377148}
+  cam: {fileID: 1611370804}
 --- !u!1001 &1593192754
 PrefabInstance:
   m_ObjectHideFlags: 0
