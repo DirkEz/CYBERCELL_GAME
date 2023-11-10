@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-
+    Animator anim;
     [Header("References")]
     [SerializeField] private GunData gunData;
     [SerializeField] private Transform cam;
@@ -16,14 +16,17 @@ public class Gun : MonoBehaviour
     {
         PlayerShoot.shootInput += Shoot;
         PlayerShoot.reloadInput += StartReload;
+        anim = gameObject.GetComponent<Animator>();
     }
 
     private void OnDisable() => gunData.reloading = false;
 
     public void StartReload()
     {
-        if (!gunData.reloading && this.gameObject.activeSelf)
+        if (!gunData.reloading && this.gameObject.activeSelf) { 
+            anim.SetTrigger("Reload");
             StartCoroutine(Reload());
+        }
     }
 
     private IEnumerator Reload()
@@ -53,6 +56,7 @@ public class Gun : MonoBehaviour
 
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
+                anim.SetTrigger("Active");
                 OnGunShot();
             }
         }
