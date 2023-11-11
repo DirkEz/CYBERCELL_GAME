@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+
     Animator anim;
     [Header("References")]
     [SerializeField] private GunData gunData;
     [SerializeField] private Transform cam;
+    public AudioSource source;
+    public AudioClip ShootingClip;
+    public AudioClip ReloadClip;
 
     float timeSinceLastShot;
 
@@ -26,6 +30,7 @@ public class Gun : MonoBehaviour
         if (!gunData.reloading && this.gameObject.activeSelf) { 
             anim.SetTrigger("Reload");
             StartCoroutine(Reload());
+            source.PlayOneShot(ReloadClip, 0.7f);
         }
     }
 
@@ -57,6 +62,7 @@ public class Gun : MonoBehaviour
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
                 anim.SetTrigger("Active");
+                source.PlayOneShot(ShootingClip, 0.7f);
                 OnGunShot();
             }
         }
