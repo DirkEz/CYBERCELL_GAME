@@ -61,7 +61,7 @@ public class Gun : MonoBehaviour
 
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
-                anim.SetTrigger("Active");
+                anim.SetTrigger("Shoot");
                 source.PlayOneShot(ShootingClip, 0.7f);
                 OnGunShot();
             }
