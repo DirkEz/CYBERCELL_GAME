@@ -27,10 +27,21 @@ public class Gun : MonoBehaviour
 
     public void StartReload()
     {
-        if (!gunData.reloading && this.gameObject.activeSelf) { 
-            anim.SetTrigger("Reload");
+        if (!gunData.reloading && this.gameObject.activeSelf) {
+            int num = UnityEngine.Random.Range(1, 3);
+            if (num == 1)
+            {
+                anim.SetTrigger("ARReload");
+                source.PlayOneShot(ReloadClip, 0.7f);
+            }
+            else if (num == 2)
+            {
+                anim.SetTrigger("ARReload_miss");
+                source.PlayOneShot(ReloadClip, 0.7f);
+            }
+          
+            
             StartCoroutine(Reload());
-            source.PlayOneShot(ReloadClip, 0.7f);
         }
     }
 
@@ -58,10 +69,9 @@ public class Gun : MonoBehaviour
                     IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
                     damageable?.TakeDamage(gunData.damage);
                 }
-
+                anim.SetTrigger("ARShoot");
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
-                anim.SetTrigger("Shoot");
                 source.PlayOneShot(ShootingClip, 0.7f);
                 OnGunShot();
             }

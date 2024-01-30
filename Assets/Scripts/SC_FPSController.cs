@@ -7,7 +7,6 @@ using UnityEngine;
 public class SC_FPSController : MonoBehaviour
 {
 
-    
 
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
@@ -63,7 +62,7 @@ public class SC_FPSController : MonoBehaviour
 
                     // Move the controller
                     characterController.Move(moveDirection * Time.deltaTime);
-
+                    
                     // Player and Camera rotation
                     if (canMove)
                     {
